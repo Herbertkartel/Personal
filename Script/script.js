@@ -1,37 +1,4 @@
-<!DOCTYPE html>
-<html>
-<head>
-    <title>Alx Student Management System</title>
-    <link rel="stylesheet" type="text/css" href="style.css">
-</head>
-<body>
-    <h1>Alx Student Management System</h1>
-    <div id="studentForm">
-        <h2>Add Student</h2>
-        <input type="text" id="studentId" placeholder="Student ID">
-        <input type="text" id="name" placeholder="Name">
-        <input type="text" id="age" placeholder="Age">
-        <input type="text" id="grade" placeholder="Grade">
-        <button onclick="addStudent()">Add</button>
-    </div>
-
-    <div id="studentList">
-        <h2>Student List</h2>
-        <table>
-            <thead>
-                <tr>
-                    <th>Student ID</th>
-                    <th>Name</th>
-                    <th>Age</th>
-                    <th>Grade</th>
-                </tr>
-            </thead>
-            <tbody id="studentTableBody"></tbody>
-        </table>
-    </div>
-
-    <script src="script.js">
-	// Sample data for demonstration purposes
+// Sample data for demonstration purposes
 var students = [
     { studentId: "101", name: "John Doe", age: 18, grade: 12 },
     { studentId: "102", name: "Jane Smith", age: 17, grade: 11 }
@@ -64,7 +31,3 @@ function displayStudents() {
     students.forEach(function(student) {
         var row = table.insertRow();
         row.insertCell().innerHTML = student.studentId
-
-</script>
-</body>
-</html>
