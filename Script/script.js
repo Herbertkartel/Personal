@@ -1,33 +1,48 @@
-// Sample data for demonstration purposes
-var students = [
-    { studentId: "101", name: "John Doe", age: 18, grade: 12 },
-    { studentId: "102", name: "Jane Smith", age: 17, grade: 11 }
-];
+document.getElementById('student-form').addEventListener('submit', function(e) {
+    e.preventDefault();
 
-// Function to add a student to the table
-function addStudent() {
-    var studentId = document.getElementById("studentId").value;
-    var name = document.getElementById("name").value;
-    var age = document.getElementById("age").value;
-    var grade = document.getElementById("grade").value;
+    var name = document.getElementById('name').value;
+    var age = document.getElementById('age').value;
+    var grade = document.getElementById('grade').value;
 
-    var table = document.getElementById("studentTableBody");
-    var row = table.insertRow();
-    row.insertCell().innerHTML = studentId;
-    row.insertCell().innerHTML = name;
-    row.insertCell().innerHTML = age;
-    row.insertCell().innerHTML = grade;
+    var student = {
+        name: name,
+        age: age,
+        grade: grade
+    };
 
-    // Clear input fields after adding the student
-    document.getElementById("studentId").value = "";
-    document.getElementById("name").value = "";
-    document.getElementById("age").value = "";
-    document.getElementById("grade").value = "";
+    addStudent(student);
+    clearForm();
+});
+
+function addStudent(student) {
+    // Make a POST request to the backend API to add the student
+    // Replace the API_URL with the actual URL of your backend API endpoint
+    fetch(API_URL, {
+        method: 'POST',
+        headers: {
+            'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(student)
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            displayStudent(data.student);
+        }
+    })
+    .catch(error => console.error(error));
 }
 
-// Function to display the existing students in the table
-function displayStudents() {
-    var table = document.getElementById("studentTableBody");
-    students.forEach(function(student) {
-        var row = table.insertRow();
-        row.insertCell().innerHTML = student.studentId
+function displayStudent(student) {
+    var studentsList = document.getElementById('students');
+    var listItem = document.createElement('li');
+    listItem.textContent = student.name + ' (Age: ' + student.age + ', Grade: ' + student.grade + ')';
+    studentsList.appendChild(listItem);
+}
+
+function clearForm() {
+    document.getElementById('name').value = '';
+    document.getElementById('age').value = '';
+    document.getElementById('grade').value = '';
+}
