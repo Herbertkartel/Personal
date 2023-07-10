@@ -1,0 +1,29 @@
+<DOCTYPE html>
+<html lang="en">
+	<head>
+		<title>JS</title>
+	</head>
+	<body>
+		<h2>JavaScript For Of Loop</h2>
+		<p>The for of statement loops through the values of any iterable object:</p>
+
+		<p id="demo"></p>
+		<script type="text/javascript>
+			const cars = ["volvo", "Bmw", "Benz"]
+			let text = "";
+			for (let x of cars) {
+				text += x + "<br>"
+			}
+		document.getElementById("demo").innerHTML = text
+
+		const materials = [
+			"sand",
+			"bricks",
+			"sheets",
+			"timber",
+		];
+		
+		console.log(materials.map(material => material.length));
+		</script>
+	</body>
+</html>

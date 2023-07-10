@@ -1,32 +1,25 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Student Management System</title>
+    <title>To do App</title>
     <link rel="stylesheet" type="text/css" href="css/styles.css">
+	<style>
+		body {
+			background: blue;
+		}
+	</style>
+
 </head>
 <body>
-    <h1>Student Management System</h1>
-
-    <div class="container">
-        <form id="student-form">
-            <h2>Add Student</h2>
-            <label for="name">Name:</label>
-            <input type="text" id="name" required>
-
-            <label for="age">Age:</label>
-            <input type="number" id="age" required>
-
-            <label for="grade">Grade:</label>
-            <input type="text" id="grade" required>
-
-            <button type="submit">Add</button>
-        </form>
-
-        <div id="student-list">
-            <h2>Student List</h2>
-            <ul id="students"></ul>
-        </div>
-    </div>
+	<main>
+		<div class="todo-container">
+			<h1>To-Do List</h1>
+			<input type="text" id="todo-input"class="todo-input" placeholder="Add a new task" />
+			<button id="add-task-btn">Add Task</button>
+		</div/>
+		<ul id="todo-list" class="todo-list">
+		</ul>
+	</main>
 
     <script src="script.js"></script>
 </body>

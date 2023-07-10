@@ -1,48 +1,44 @@
-document.getElementById('student-form').addEventListener('submit', function(e) {
-    e.preventDefault();
+const todoInput = document.getElementById('todo-input');
+const addTaskButton = document.getElementById('add-task-btn');
+const todoList = document.getElementById('todo-list');
 
-    var name = document.getElementById('name').value;
-    var age = document.getElementById('age').value;
-    var grade = document.getElementById('grade').value;
+console.log("whats going on?);  
 
-    var student = {
-        name: name,
-        age: age,
-        grade: grade
-    };
+//Add a task
+const addTask = () => {
+	const taskTest = todoInput.value.trim();
 
-    addStudent(student);
-    clearForm();
-});
-
-function addStudent(student) {
-    // Make a POST request to the backend API to add the student
-    // Replace the API_URL with the actual URL of your backend API endpoint
-    fetch(API_URL, {
-        method: 'POST',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify(student)
-    })
-    .then(response => response.json())
-    .then(data => {
-        if (data.success) {
-            displayStudent(data.student);
-        }
-    })
-    .catch(error => console.error(error));
+	if(taskText !=='') {
+		const taskItem = createTaskItem(taskText)
+	}
 }
+//create new task items
+const createTaskItem = (taskText) => {
+	const taskItem = document.createElement('li');
+	taskItem.className = "todo-item";
 
-function displayStudent(student) {
-    var studentsList = document.getElementById('students');
-    var listItem = document.createElement('li');
-    listItem.textContent = student.name + ' (Age: ' + student.age + ', Grade: ' + student.grade + ')';
-    studentsList.appendChild(listItem);
-}
+	const checkbox = document.createElement('input');
+	checkbox.type = 'checkbox';
+	checkbox.classList.add('checkbox');
 
-function clearForm() {
-    document.getElementById('name').value = '';
-    document.getElementById('age').value = '';
-    document.getElementById('grade').value = '';
+	const taskTextSpan = document.createElement('span');
+	taskTextSpan.textContent = taskText;
+
+	const deleteBtn = document.createElement('button');
+	deleteBtn.textContent = 'Delete'
+	document.classList.add('delete-btn')
+	deleteBtn.addEventListener('click', deleteTask);
+
+	taskItem.appendChild(checkbox);
+	taskItem.appendChild(taskTextSpan);
+	taskItem.appendChild(deleteBtn);
+
+	return taskItem;
 }
+// delete tasks
+const deleteTask = () => {
+	constTaskItem = event.target.parentNode;
+	todoList.removeChild(taskItem);
+};
+//Event listeners
+//Examples of tasks
